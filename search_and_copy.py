@@ -22,7 +22,9 @@ def search_and_copy(serial_num, source_folder, destination_folder):
     count_sn = 0
     target = destination_folder
     found = []
+    exclude = set(["FAIL", "fail", "Fail"])
     for root, dirs, files in os.walk(data_folder):
+        dirs[:] = [d for d in dirs if d not in exclude]
         for file in files:
             if file.endswith('.xls') and file in serial_num:
                 # print(str(file))
@@ -46,9 +48,9 @@ def search_and_copy(serial_num, source_folder, destination_folder):
 if __name__ == "__main__":
 
     ########## Input data for test ##########
-    source_folder = Path("D:\KETL\Product\Smith And Nephew\Trinity 4K\Test Results Record\91002016")
-    destination_folder = source_folder / "RSN_1518"
-    rsn_file = source_folder / "RSN_1518_Serial_List.xlsx"
+    source_folder = Path("D:/KETL/Product/Smith And Nephew/Trinity 4K/Test Results Record/91002021/New folder")
+    destination_folder = source_folder / "RSN_1571"
+    rsn_file = source_folder / "RSN# S&N 1571_Serial list.xlsx"
     target_column = "Serial_Num"
     target_file_type = ".xls"
     #########################################
